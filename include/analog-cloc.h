@@ -18,7 +18,22 @@
 Color DARK_GREY = {45, 45, 45, 255};
 Color LIGHT_GREY = {229, 229, 229, 255};
 
-void update_time(void); // gets the time stamp to draw
+typedef struct {
+    int hour;
+    int min;
+    int sec;
+} Time;
+
+// Gets the time stamp to draw
+void update_time(Time* curr_t)
+{
+    time_t t = time(NULL);
+    struct tm* now = localtime(&t);
+
+    curr_t->hour = now->tm_hour;
+    curr_t->min = now->tm_min;
+    curr_t->sec = now->tm_sec;
+}
 
 int draw_cloc_face(int size)
 {

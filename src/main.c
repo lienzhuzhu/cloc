@@ -12,13 +12,14 @@
 
 int main(void)
 {
+    Time time;
     Color LIGHT_BLUE = {225, 239, 240, 255};
 
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Analog Cloc");
     SetTargetFPS(15); // WHY???
 
     while(!WindowShouldClose()) {
-        // update clock
+        /*update_time(&time);*/
         BeginDrawing();
         ClearBackground(LIGHT_BLUE);
         draw_cloc_face(250);
