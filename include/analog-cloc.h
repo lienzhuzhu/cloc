@@ -10,6 +10,9 @@
 #define WINDOW_WIDTH  600
 #define WINDOW_HEIGHT 600
 
+#define DEGREES_IN_A_CIRCLE         360
+#define NUM_HOURS    12
+
 #include <stdio.h>
 #include <time.h>
 
@@ -44,13 +47,39 @@ int draw_cloc_face(int size)
 
     Vector2 face_center = { WINDOW_WIDTH / 2., WINDOW_HEIGHT / 2. };
     DrawCircleV( face_center, size, DARK_GREY);
-    DrawCircleV( face_center, size - 30, LIGHT_GREY);
-    DrawCircleV( face_center, size - 40, RAYWHITE);
-    DrawCircleV( face_center, 20, DARK_GREY);
+    DrawCircleV( face_center, size - 30, RAYWHITE);
+
+    float rect_width = 10;
+    float rect_height = size;
+
+    Rectangle tick_mark = {
+        WINDOW_WIDTH / 2., WINDOW_HEIGHT / 2.,
+        rect_width, rect_height
+    };
+
+    float degrees_between_ticks = 1. * DEGREES_IN_A_CIRCLE / NUM_HOURS;
+    Vector2 rotation_origin = {rect_width / 2., rect_height};
+    for (int i = 0; i < 12; i++) {
+        DrawRectanglePro(tick_mark, rotation_origin, i * degrees_between_ticks, DARK_GREY);
+    }
+    DrawCircleV( face_center, size - 45, RAYWHITE);
 
     return EXIT_SUCCESS;
 }
 
-int draw_hour_hand();
-int draw_minute_hand();
-int draw_second_hand();
+void draw_second_hand(int size, Time* time)
+{
+    float hand_width = 2;
+    float hand_height = size - 35;
+    Rectangle sec_hand = {
+        WINDOW_WIDTH / 2., WINDOW_HEIGHT / 2.,
+        hand_width, hand_height
+    };
+    Vector2 rotation_origin = {hand_width / 2., hand_height};
+
+    int seconds = time->sec;
+    DrawRectanglePro(sec_hand, rotation_origin, 6. * seconds, RED);
+}
+
+/*int draw_minute_hand();*/
+/*int draw_hour_hand();*/
