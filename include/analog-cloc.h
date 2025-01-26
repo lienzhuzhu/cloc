@@ -10,8 +10,8 @@
 #define WINDOW_WIDTH  600
 #define WINDOW_HEIGHT 600
 
-#define DEGREES_IN_A_CIRCLE         360
-#define NUM_HOURS    12
+#define DEGREES_IN_A_CIRCLE 360
+#define NUM_HOURS            12
 
 #include <stdio.h>
 #include <time.h>
@@ -81,5 +81,28 @@ void draw_second_hand(int size, Time* time)
     DrawRectanglePro(sec_hand, rotation_origin, 6. * seconds, RED);
 }
 
-/*int draw_minute_hand();*/
-/*int draw_hour_hand();*/
+void draw_minute_hand(int size, Time* time)
+{
+    float hand_width = 10;
+    float hand_height = size - 55;
+    Rectangle min_hand = {
+        WINDOW_WIDTH / 2., WINDOW_HEIGHT / 2.,
+        hand_width, hand_height
+    };
+    Vector2 rotation_origin = {hand_width / 2., hand_height};
+    int minutes = time->min;
+    DrawRectanglePro(min_hand, rotation_origin, 6. * minutes, BLACK);
+}
+
+void draw_hour_hand(int size, Time* time)
+{
+    float hand_width = 15;
+    float hand_height = size - 130;
+    Rectangle hour_hand = {
+        WINDOW_WIDTH / 2., WINDOW_HEIGHT / 2.,
+        hand_width, hand_height
+    };
+    Vector2 rotation_origin = {hand_width / 2., hand_height};
+    int hour = time->hour;
+    DrawRectanglePro(hour_hand, rotation_origin, 30 * hour + time->min / 2., BLACK);
+}

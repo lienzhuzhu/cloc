@@ -19,7 +19,7 @@ int main(void)
     Vector2 face_center = { WINDOW_WIDTH / 2., WINDOW_HEIGHT / 2. };
 
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Analog Cloc");
-    SetTargetFPS(15); // WHY???
+    SetTargetFPS(60); // WHY???
 
     while(!WindowShouldClose()) {
         update_time(&time);
@@ -27,6 +27,8 @@ int main(void)
         ClearBackground(LIGHT_BLUE);
         draw_cloc_face(size);
         draw_second_hand(size, &time);
+        draw_minute_hand(size, &time);
+        draw_hour_hand(size, &time);
         DrawCircleV( face_center, 15, DARK_GREY);
         EndDrawing();
     }
