@@ -11,14 +11,16 @@
 #define WINDOW_HEIGHT 600
 
 #include <stdio.h>
+#include <time.h>
+
 #include "raylib.h"
 
 Color DARK_GREY = {45, 45, 45, 255};
 Color LIGHT_GREY = {229, 229, 229, 255};
 
-/*void update_cloc();*/
+void update_time(void); // gets the time stamp to draw
 
-int draw_cloc(int size)
+int draw_cloc_face(int size)
 {
     if (size < 200) {
         printf("Size must be greater than 200\n");
@@ -33,3 +35,7 @@ int draw_cloc(int size)
 
     return EXIT_SUCCESS;
 }
+
+int draw_hour_hand();
+int draw_minute_hand();
+int draw_second_hand();

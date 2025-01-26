@@ -21,7 +21,7 @@ int main(void)
         // update clock
         BeginDrawing();
         ClearBackground(LIGHT_BLUE);
-        draw_cloc(250);
+        draw_cloc_face(250);
         EndDrawing();
     }
 
